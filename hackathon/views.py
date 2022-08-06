@@ -59,10 +59,6 @@ def login(request):
                 request.session.save()
                 return redirect(admin_dashboard)
 
-        # This will work when details entered is wrong.
-        # else:
-        #     messages.error(request, "Invalid Email & Password !! ")
-    # This will check if user is already logged in or not.
     try:
         if request.session["log_email"] is not None:
             return redirect(guard_dashboard)
@@ -100,10 +96,7 @@ def admin_dashboard(request):
                      "ultravalue":ultrasonicsensor_value,
                      "ldrvalue":ldrsensor_value
                     }
-            if ev:
-                messages.error(request, warning_res['message'])
-            else:
-                return render(request,'dashboard.html',context)
+            return render(request,'dashboard.html',context)
     except:
         pass
     return render(request,'index.html')
@@ -131,7 +124,7 @@ def guard_profile(request):
 def admin_map(request):
     try:
         if request.session["log_user_email"] is None:
-            return render(request,'index.html')
+            return redirect(login)
         else:
             return render(request,'sitemap.html')
     except:
@@ -186,16 +179,10 @@ def admin_crossing(request):
             for i in ldrvalue['ldr_val']:
                 ldrgraphdata.append(i['LDR_VALUE'])
                 ldrgraphtime.append(i['READING_TIME'][11:16])
-
-            print(ldrgraphdata)
-            print(ldrgraphtime)
             ev = r2['error']
-            # plt.barh(ldrgraphtime[::5], ldrgraphdata[::5])
-            # plt.savefig('hackathon/static/src/images/ldr/ldr_crossing.jpg')
             fig, ax = plt.subplots()
             ax.barh(ldrgraphtime[::10], ldrgraphdata[::10], align='center')
             plt.savefig('hackathon/static/src/images/ldr/ldr_crossing.jpg')
-
             return render(request,'Level_crossing.html', records1)
     except:
         pass
@@ -204,7 +191,7 @@ def admin_crossing(request):
 def admin_obstacle(request):
     try:
         if request.session["log_user_email"] is None:
-            return render(request,'index.html')
+            return redirect(login)
         else:
             url = "https://espnodewebsite.000webhostapp.com/API/fetchirsensordata.php"
             response = requests.get(url=url)
@@ -229,7 +216,7 @@ def admin_obstacle(request):
 def admin_human(request):
     try:
         if request.session["log_user_email"] is None:
-            return render(request,'index.html')
+            return redirect(login)
         else:
             url = "https://espnodewebsite.000webhostapp.com/API/fetchpirsensordata.php"
             response = requests.get(url=url)
@@ -243,8 +230,6 @@ def admin_human(request):
             for i in pirvalue['pir_val']:
                 pirgraph.append(i['PIR_VALUE'])
                 pirtime.append(i['READING_TIME'][11:16])
-            print(pirgraph)
-            print(pirtime)
             fig, ax = plt.subplots()
             ax.barh(pirtime[::5], pirgraph[::5], align='center')
             plt.savefig('hackathon/static/src/images/pir/pir_human.jpg')
@@ -335,7 +320,6 @@ def admin_add(request):
                 address = request.POST.get("address")
                 gender = request.POST.get("inlineRadioOptions")
                 hexcode = request.POST.get('hexcode')
-
 
                 # Random Password generator code
                 import random
@@ -474,7 +458,6 @@ def admin_attendance(request):
             attendance = response.json()
             records = {}
             records['data'] = attendance
-            print(records['data'])
             return render(request, 'Attendance_Table.html',records)
     except:
         pass
@@ -543,11 +526,9 @@ def guard_complain(request):
                 print(r2.text)
                 print(params)
                 res = r2.json()
-                ev = res['error']
-                if ev:
-                    return render(request, 'guard_form-wizard.html')
-                else:
-                    return render(request,'guard_form-wizard.html',params)
+                return render(request,'guard_form-wizard.html',params)
+            else:
+                return render(request, 'guard_form-wizard.html')
     except:
         pass
     return render(request,'index.html')
