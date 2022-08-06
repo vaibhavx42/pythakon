@@ -25,3 +25,4 @@ WTForms==3.0.1
 zipp==3.8.0
 gunicorn == 20.1.0
 django == 4.1
+matplotlib == 3.1
