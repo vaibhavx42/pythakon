@@ -172,17 +172,17 @@ def admin_crossing(request):
             r2 = response.json()
             records1={}
             records1['data'] = r2
-            ldrvalue={}
-            ldrgraphdata=[]
-            ldrgraphtime=[]
-            ldrvalue['ldr_val']= r2['ldr']
-            for i in ldrvalue['ldr_val']:
-                ldrgraphdata.append(i['LDR_VALUE'])
-                ldrgraphtime.append(i['READING_TIME'][11:16])
-            ev = r2['error']
-            fig, ax = plt.subplots()
-            ax.barh(ldrgraphtime[::10], ldrgraphdata[::10], align='center')
-            plt.savefig('hackathon/static/src/images/ldr/ldr_crossing.jpg')
+            # ldrvalue={}
+            # ldrgraphdata=[]
+            # ldrgraphtime=[]
+            # ldrvalue['ldr_val']= r2['ldr']
+            # for i in ldrvalue['ldr_val']:
+            #     ldrgraphdata.append(i['LDR_VALUE'])
+            #     ldrgraphtime.append(i['READING_TIME'][11:16])
+            # ev = r2['error']
+            # fig, ax = plt.subplots()
+            # ax.barh(ldrgraphtime[::10], ldrgraphdata[::10], align='center')
+            # plt.savefig('hackathon/static/src/images/ldr/ldr_crossing.jpg')
             return render(request,'Level_crossing.html', records1)
     except:
         pass
@@ -198,16 +198,16 @@ def admin_obstacle(request):
             ir_res = response.json()
             records = {}
             records['data'] = ir_res
-            irvalue={}
-            irgraph=[]
-            irtime=[]
-            irvalue['ir_val'] = records['data']['ir']
-            for i in irvalue['ir_val']:
-                irgraph.append(i['IR_VALUE'])
-                irtime.append(i['READING_TIME'][11:16])
-            fig, ax = plt.subplots()
-            ax.barh(irtime, irgraph, align='center')
-            plt.savefig('hackathon/static/src/images/ir/ir_obstacle.jpg')
+            # irvalue={}
+            # irgraph=[]
+            # irtime=[]
+            # irvalue['ir_val'] = records['data']['ir']
+            # for i in irvalue['ir_val']:
+            #     irgraph.append(i['IR_VALUE'])
+            #     irtime.append(i['READING_TIME'][11:16])
+            # fig, ax = plt.subplots()
+            # ax.barh(irtime, irgraph, align='center')
+            # plt.savefig('hackathon/static/src/images/ir/ir_obstacle.jpg')
             return render(request,'Obstacle detection.html',records)
     except:
         pass
@@ -223,16 +223,16 @@ def admin_human(request):
             pir_res = response.json()
             records = {}
             records['data'] = pir_res
-            pirvalue={}
-            pirgraph=[]
-            pirtime=[]
-            pirvalue['pir_val'] = records['data']['pir']
-            for i in pirvalue['pir_val']:
-                pirgraph.append(i['PIR_VALUE'])
-                pirtime.append(i['READING_TIME'][11:16])
-            fig, ax = plt.subplots()
-            ax.barh(pirtime[::5], pirgraph[::5], align='center')
-            plt.savefig('hackathon/static/src/images/pir/pir_human.jpg')
+            # pirvalue={}
+            # pirgraph=[]
+            # pirtime=[]
+            # pirvalue['pir_val'] = records['data']['pir']
+            # for i in pirvalue['pir_val']:
+            #     pirgraph.append(i['PIR_VALUE'])
+            #     pirtime.append(i['READING_TIME'][11:16])
+            # fig, ax = plt.subplots()
+            # ax.barh(pirtime[::5], pirgraph[::5], align='center')
+            # plt.savefig('hackathon/static/src/images/pir/pir_human.jpg')
             return render(request,'Human Detection.html',records)
     except:
         pass
@@ -248,16 +248,16 @@ def admin_distance(request):
             ultra_res = response.json()
             records = {}
             records['data'] = ultra_res
-            ultravalue = {}
-            ultragraph = []
-            ultratime = []
-            ultravalue['ultra_val'] = records['data']['ultrasonic']
-            for i in ultravalue['ultra_val']:
-                ultragraph.append(i['ULTRASONIC_VALUE'])
-                ultratime.append(i['READING_TIME'][11:16])
-            fig, ax = plt.subplots()
-            ax.barh(ultratime, ultragraph, align='center')
-            plt.savefig('hackathon/static/src/images/ultra/ultra_distance.jpg')
+            # ultravalue = {}
+            # ultragraph = []
+            # ultratime = []
+            # ultravalue['ultra_val'] = records['data']['ultrasonic']
+            # for i in ultravalue['ultra_val']:
+            #     ultragraph.append(i['ULTRASONIC_VALUE'])
+            #     ultratime.append(i['READING_TIME'][11:16])
+            # fig, ax = plt.subplots()
+            # ax.barh(ultratime, ultragraph, align='center')
+            # plt.savefig('hackathon/static/src/images/ultra/ultra_distance.jpg')
             return render(request, 'Distance Calculator.html',records)
     except:
         pass
