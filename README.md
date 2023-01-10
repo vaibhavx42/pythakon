@@ -6,7 +6,7 @@
 ## Description
 
 The Pythakon is an **IOT Based Railway Accident Prevention System** ,initially made for 36 hour hackathon at University (PS : WE WON THAT HACKATHON) .
-- Rail accidents are one of the major issues till the present day. Despite of safety measures, everyyear at least one major accident is recorded. 
+- Rail accidents are one of the major issues till the present day. Despite safety measures, at least one major accident is recorded every year. 
 - The aim of this project is to present a handy module consisting of sensors and micro systems which are used to detect faults which cause accidents.
 - Through this project we are  making a device that will alert the people or vehicles at level crossing that a train is coming and it will also make a siren. So that the people get aware that the train is coming and
 they have to wait till the train crosses.
@@ -58,7 +58,7 @@ For help getting started with IOT development, view the
 * [Choose an Open Source License](https://choosealicense.com)
 <p align="right">(<a href="#top">back to top</a>)</p>  
 
-## Miscelleneous
+## Miscellaneous
 Do consider looking at other paradigms of this documentation
   - [Change-logs](/.github/CHANGELOG.md)
   - [License used](/LICENSE.txt)
